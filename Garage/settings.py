@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-*8dnbp6d579c4xb#u7j$!43ar#&vms%ew$25zzhdt__a6oy1ah
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS  = ["https://*.kuberns.com"]
 
 
 # Application definition
