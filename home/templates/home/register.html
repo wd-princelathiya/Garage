@@ -1,0 +1,30 @@
+{% extends "home/layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register/" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="confirmation" placeholder="Confirmation" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+        <a href="/login"><button class="btn btn-primary" type="button">Log In</button></a>
+    </form>
+
+    {% if error %}
+        <div>
+            <p textaling:"center">{{ error }}</p>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

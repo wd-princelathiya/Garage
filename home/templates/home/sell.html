@@ -1,0 +1,51 @@
+{% extends "home/layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <form action="/sell/" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="name" placeholder="Product Name" type="text">
+        </div>
+        <div class="mb-3">
+            <select class="form-select mx-auto w-auto" id="category" name="category" onchange="showInput()">
+                <option value="" disabled selected>Select Product Category</option>
+                <option value="0">Write A New Category</option>
+                {% for cat in category %}
+                    <option value="{{cat}}">{{ cat }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="catname" placeholder="Product Category" type="text" id="catname" style="display:none;">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="price" placeholder="Product Price" type="number">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="quantity" placeholder="Product Quantity" type="number" min="1">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+    {% if error %}
+        <div>
+            <p textaling:"center">{{ error }}</p>
+        </div>
+    {% endif %}
+
+    <script>
+        function showInput() {
+            var selectedOption = document.getElementById("category").value;
+            var inputField = document.getElementById("catname");
+    
+            if (selectedOption === "0") {
+                inputField.style.display = "block";
+            } else {
+                inputField.style.display = "none";
+            }
+        }
+    </script>
+{% endblock %}
